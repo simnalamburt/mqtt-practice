@@ -1,0 +1,14 @@
+#!/usr/bin/env ruby
+require 'mqtt'
+
+HOST = '127.0.0.1'
+
+MQTT::Client.connect(HOST) do |c|
+  c.publish('test', '야호')
+end
+
+MQTT::Client.connect(HOST) do |c|
+  c.get('test') do |topic, message|
+    puts "#{topic}: #{message}"
+  end
+end
