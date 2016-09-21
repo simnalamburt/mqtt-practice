@@ -1,13 +1,19 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 require 'mqtt'
+require 'tomlrb'
 
-HOST = '127.0.0.1'
+# Load configs
+config = Tomlrb.load_file('secret.toml', symbolize_keys: true)
+host = config[:config][:hostname]
+port = config[:config][:port]
+username = config[:credentials][:username]
+password = config[:credentials][:password]
 
-MQTT::Client.connect(HOST) do |c|
+# Connect to MQTT broker
+MQTT::Client.connect(host: host, port: port, username: username, password: password) do |c|
   c.publish('test', '야호')
-end
 
-MQTT::Client.connect(HOST) do |c|
   c.get('test') do |topic, message|
     puts "#{topic}: #{message}"
   end
