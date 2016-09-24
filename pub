@@ -12,9 +12,8 @@ password = config[:credentials][:password]
 
 # Connect to MQTT broker
 MQTT::Client.connect(host: host, port: port, username: username, password: password) do |c|
-  c.publish('test', '야호')
-
-  c.get('test') do |topic, message|
-    puts "#{topic}: #{message}"
+  loop do
+    c.publish('test/', '야호')
+    gets
   end
 end
