@@ -11,7 +11,10 @@ username = config[:credentials][:username]
 password = config[:credentials][:password]
 
 # Connect to MQTT broker
+print '연결중 ... '
 MQTT::Client.connect(host: host, port: port, username: username, password: password) do |c|
+  puts "\e[32m완료!\e[0m"
+
   c.get('#') do |topic, message|
     puts "#{topic}: #{message}"
   end
