@@ -15,8 +15,8 @@ print '연결중 ... '
 MQTT::Client.connect(host: host, port: port, username: username, password: password) do |c|
   puts "\e[32m완료!\e[0m"
 
-  loop do
-    c.publish('test/', '야호')
+  loop.with_index do |_, i|
+    c.publish('test', "야호 #{i}")
     sleep 1
   end
 end
