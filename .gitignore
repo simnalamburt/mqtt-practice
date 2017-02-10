@@ -1,1 +1,5 @@
+# Ignore dependencies
+/.bundle/lib/
+
+# Don't check-in secret file
 /secret.toml
