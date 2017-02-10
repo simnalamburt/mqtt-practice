@@ -11,8 +11,9 @@ bundle
 cp secret.toml.example secret.toml
 vim secret.toml
 
-bundle exec pub
-bundle exec sub
+# Try it!
+bundle exec run pub
+bundle exec run sub
 ```
 
 ###### Prerequisite
